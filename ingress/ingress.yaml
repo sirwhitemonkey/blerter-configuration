@@ -1,0 +1,64 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: blerter-service-rest
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: rest.prototype.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: blerter-service-rest
+          servicePort: 4000    
+#---
+#apiVersion: extensions/v1beta1
+#kind: Ingress
+#metadata:
+#  name: blerter-service-grpc
+#  annotations:
+#    ingress.kubernetes.io/ssl-passthrough: "true"
+#spec:
+#  rules:
+#  - host: grpc.prototype.com
+#    http:
+#      paths:
+#      - path:
+#        backend:
+#          serviceName: blerter-service
+#          servicePort: 4002   
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: blerter-dashboard
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: dashboard.prototype.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: blerter-dashboard
+          servicePort: 7004
+          
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: blerter-desktop
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: desktop.prototype.com
+    http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: blerter-vaadin
+          servicePort: 4030          

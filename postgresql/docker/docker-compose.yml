@@ -1,0 +1,14 @@
+version: "2"
+
+services:
+  blerter-postgres:
+    build: .
+    #image: postgres:9.6
+    container_name: blerter-postgres
+    environment:
+      - PGLOG=/tmp/pgsql.log
+      - PGDIR=/usr/local/pgsql/data
+      - PGDATA=/usr/local/pgsql/data/sync-pgdata
+    ports:
+      - "5432:5432"
+
